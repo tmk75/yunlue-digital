@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云略数字 - 企业数字化转型专家</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a237e 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%2300ffff" opacity="0.3"/><circle cx="80" cy="30" r="1.5" fill="%2300ffff" opacity="0.4"/><circle cx="40" cy="70" r="1" fill="%2300ffff" opacity="0.5"/><circle cx="90" cy="80" r="2.5" fill="%2300ffff" opacity="0.2"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #00ffff;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-bottom: 2rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ffff;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-visual {
+            text-align: center;
+            position: relative;
+        }
+
+        .brain-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .brain {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(0, 128, 255, 0.1));
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(0, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+        }
+
+        .brain-text {
+            color: #00ffff;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .brain-sides {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .left-brain {
+            left: -150px;
+            text-align: right;
+        }
+
+        .right-brain {
+            right: -150px;
+            text-align: left;
+        }
+
+        /* Industries Section */
+        .industries-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .industry-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ffff;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .industry-card h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .industry-card ul {
+            list-style: none;
+            color: #ccc;
+        }
+
+        .industry-card li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .industry-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Advantages Section */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .advantage-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .advantage-item:hover {
+            border-color: #00ffff;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .advantage-item h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .advantage-item p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            color: #ccc;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .brain-sides {
+                position: static;
+                transform: none;
+                margin-top: 2rem;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">云略数字 DIGITAL</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#services">服务</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#industries">服务行业</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>云略数字</h1>
+                    <div class="hero-subtitle">企业数字化转型专家</div>
+                    <div class="hero-description">
+                        云略成立超过十年，初期以高端猎头服务起家，历经五年战略升级形成集团化架构。
+                        在云略我们以创新与科技为桥梁，为企业赋能，将共情、创意与体验融入我们所做的每一件事。
+                    </div>
+                    <a href="#services" class="cta-button">了解我们的服务</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">云略数字服务</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>战略与创新</h3>
+                        <p>通过深度行业洞察和专业方法论，为客户提供定制化的战略规划和创新实施路径，助力企业在快速变化的市场环境中保持领先地位，实现可持续增长和价值创造。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤖</div>
+                        <h3>人工智能和数据分析</h3>
+                        <p>通过先进的AI算法和数据科学技术，为客户提供智能化的业务洞察和决策支持，优化运营效率，发现新的商业机会，提升客户体验，助力企业在数字经济时代获得竞争优势。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>体验设计</h3>
+                        <p>通过以用户为中心的设计方法和创新思维，为客户创造直观、易用、有意义的产品和服务体验，提升用户满意度和忠诚度，增强品牌竞争力，最终推动业务增长和市场成功。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👥</div>
+                        <h3>客户运营</h3>
+                        <p>通过数据驱动的客户洞察和精细化运营管理，为客户建立完整的客户运营体系，提高客户获取效率，增强客户黏性，最大化客户终身价值，实现可持续的业务增长和盈利能力提升。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">云略数字</h2>
+                <div class="section-subtitle">我们拥有最丰富的数字化和人工智能资源来为我们的客户提供服务</div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>历时五年结构化整合，云略完成从单一猎头机构到"人才招募-组织优化-创新孵化-数字化落地"四维一体的集团蜕变，以十年积淀赋能企业全周期发展需求。</p>
+                        <br>
+                        <p>我们将战略、思维、专业、知识、敏捷、创新、技术、逻辑融为一体，为客户提供全方位的数字化转型解决方案。</p>
+                    </div>
+                    <div class="about-visual">
+                        <div class="brain-container">
+                            <div class="brain-sides left-brain">
+                                <h4>左脑</h4>
+                                <p>为响应客户关于数字化转型的重大战略部署，云略提供数字化战略制定、行业最佳实践分享、新商业模式设计和变革管理。</p>
+                            </div>
+                            <div class="brain">
+                                <div class="brain-text">AI</div>
+                            </div>
+                            <div class="brain-sides right-brain">
+                                <h4>右脑</h4>
+                                <p>提供创新的应用程序设计与实施，结合前沿技术工具，实现业务价值与战略目标的和谐统一。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="industries" class="section">
+            <div class="container">
+                <h2 class="section-title">服务行业</h2>
+                <div class="industries-container">
+                    <div class="industry-card">
+                        <h3>智能制造与工业4.0</h3>
+                        <ul>
+                            <li>物联网生产监控系统</li>
+                            <li>预测性维护解决方案</li>
+                            <li>数字孪生技术实施</li>
+                            <li>自动化质量控制</li>
+                            <li>智能工厂生态系统</li>
+                        </ul>
+                    </div>
+                    <div class="industry-card">
+                        <h3>全渠道数字商务</h3>
+                        <ul>
+                            <li>统一客户体验平台</li>
+                            <li>智能库存优化系统</li>
+                            <li>个性化营销自动化</li>
+                            <li>社交电商集成</li>
+                            <li>实时数据分析仪表板</li>
+                        </ul>
+                    </div>
+                    <div class="industry-card">
+                        <h3>数字化供应链</h3>
+                        <ul>
+                            <li>端到端供应链可视化</li>
+                            <li>AI驱动的路径优化</li>
+                            <li>仓储自动化系统</li>
+                            <li>实时追踪平台</li>
+                            <li>预测性物流分析</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advantages" class="section">
+            <div class="container">
+                <h2 class="section-title">服务优势</h2>
+                <div class="section-subtitle">我们拥有资深专家团队、丰富的成功客户案例、强大的企业级技术实力、专业的企业级服务模式、全面企业级服务网络、业务价值导向的方法论以及完善的企业级服务保障体系，为客户提供全方位的支持和保障。</div>
+                <div class="advantages-grid">
+                    <div class="advantage-item">
+                        <h3>专注企业级数字化转型</h3>
+                        <p>服务中大型企业，深度理解企业级数字化转型的复杂性和挑战。我们的解决方案专为大型组织的特殊需求设计，能够有效处理规模化实施中的各种复杂问题。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3>企业级解决方案专家</h3>
+                        <p>擅长处理大型企业多系统集成需求，具备设计支撑大规模业务场景的企业级技术架构能力，并能满足大型企业严格的数据安全和监管合规要求。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3>深耕中国企业级市场</h3>
+                        <p>深刻理解中国大型企业的组织架构、决策流程和业务特点，提供真正适合本土企业的解决方案。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3>高端项目交付能力</h3>
+                        <p>擅长处理大型企业内部复杂的跨部门协调和变革管理，拥有大型项目的分阶段规划和风险控制能力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 云略数字 DIGITAL. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 14, 39, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 14, 39, 0.95)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service cards and advantage items
+        document.querySelectorAll('.service-card, .advantage-item, .industry-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
